@@ -80,38 +80,22 @@ var sumBelow = function(n) {
 // range(2,9); // [3,4,5,6,7,8]
 
 
-// var range = function(x, y) {
-//   // define a result array
-//   var result = [];
+var range = function(x, y) {
+  var result = [];
 
-//   // if x equals y
-//   if (x !== y) {
-//       // if x is positive
-//       if (y > 0) {
-//         // push x + 1 into result
-//         result.push(x);
-//         return result = result.concat(range(x + 1, y));
-//         } else {
-//         // else return result concact on range call of x - 1 to y
-//         result.push(x)
-//         return result = result.concat(range(x - 1, y))
-//         }
-//   } else {
-//     return result;
-//   }
-
-// };
-
-function range(x, y) {
-  if (x + 1 >= y) {
-    return [];
-  } else {
-    var result = range(x + 1, y - 1);
-    result.unshift(x + 1);
-    result.push(y - 1);
+  if (x + 1 === y || x === y || x - 1 === y) {
     return result;
+  } else {
+    if (x < y) {
+      result.push(x + 1);
+      return result = result.concat(range(x + 1, y));
+      } else {
+      result.push(x - 1)
+      return result = result.concat(range(x - 1, y))
+      }
   }
-}
+ };
+
 
 
 // 7. Compute the exponent of a number.
@@ -120,6 +104,14 @@ function range(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+ if (exp === 0 && base ^ 0 === 1) {
+  return 1;
+ }
+ if (exp > 0) {
+   return base * exponent(base, exp - 1);
+ } else if (exp < 0) {
+   return 1 / exponent(base, exp * -1);
+ }
 };
 
 // 8. Determine if a number is a power of two.
