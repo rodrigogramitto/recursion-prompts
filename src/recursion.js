@@ -7,32 +7,112 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+  if (n < 0) {
+    return null;
+  }
+
+ if (n === 0) {
+  return 1;
+ }
+
+ return (n * factorial(n - 1));
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+ if (array.length === 0) {
+    return 0;
+ } else {
+    return array[0] + sum(array.slice(1));
+ }
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  var sum = 0;
+
+  if (!Array.isArray(array)) {
+    return sum += array;
+  }
+  array.forEach(function(number) {
+  sum = sum + arraySum(number);
+});
+
+  return sum;
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+var absN = Math.abs(n);
+
+ if ( absN === 0 ) {
+  return true;
+ } else if (absN === 1) {
+ return false;
+ } else {
+  return isEven(absN - 2);
+ }
+
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  // define sum variable
+  var sum = 0;
+
+  // handle smallest piece of data which would be n zero
+  if (n === 0) {
+    return sum;
+  } else if (n > 0) {
+    sum += n - 1;
+    return sum + sumBelow(n - 1);
+  } else {
+    sum += n + 1;
+    return sum + sumBelow(n + 1);
+  }
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
-var range = function(x, y) {
-};
+
+
+// var range = function(x, y) {
+//   // define a result array
+//   var result = [];
+
+//   // if x equals y
+//   if (x !== y) {
+//       // if x is positive
+//       if (y > 0) {
+//         // push x + 1 into result
+//         result.push(x);
+//         return result = result.concat(range(x + 1, y));
+//         } else {
+//         // else return result concact on range call of x - 1 to y
+//         result.push(x)
+//         return result = result.concat(range(x - 1, y))
+//         }
+//   } else {
+//     return result;
+//   }
+
+// };
+
+function range(x, y) {
+  if (x + 1 >= y) {
+    return [];
+  } else {
+    var result = range(x + 1, y - 1);
+    result.unshift(x + 1);
+    result.push(y - 1);
+    return result;
+  }
+}
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
