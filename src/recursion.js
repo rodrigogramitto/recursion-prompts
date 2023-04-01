@@ -46,7 +46,39 @@ var sum = function (array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function (array) {};
+var arraySum = function (array) {
+  // if array is empty return zero
+  if (array.length === 0) {
+    return 0;
+  }
+  // define result variable
+  var result = 0;
+
+
+  // iterate over array
+  for (var i = 0; i < array.length; i++) {
+
+
+  // base case
+  // check if array at 0 is not an array
+  if (!Array.isArray(array[0])) {
+  // if array length is 1
+    if (array.length === 1) {
+      // add array at 0 to result
+      result += array[0];
+    } else {
+      // add array at 0 to result
+      result += array[0];
+      // return sum plus arraySum called on array slice after 0
+      // result += arraySum(array.slice(1));
+    }
+  }
+
+}
+
+  // return result variable
+  return result;
+};
 
 // 4. Check if a number is even.
 var isEven = function (n) {};
